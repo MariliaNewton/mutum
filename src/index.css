@@ -1,0 +1,211 @@
+/* raleway-100 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 100;
+  src: url("fonts/raleway-v34-latin-100.woff2") format("woff2");
+}
+/* raleway-200 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 200;
+  src: url("fonts/raleway-v34-latin-200.woff2") format("woff2");
+}
+/* raleway-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/raleway-v34-latin-300.woff2") format("woff2");
+}
+/* raleway-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/raleway-v34-latin-regular.woff2") format("woff2");
+}
+
+/* raleway-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/raleway-v34-latin-regular.woff2") format("woff2");
+}
+
+/* quicksand-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/quicksand-v36-latin-regular.woff2") format("woff2");
+}
+
+/* windsong-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "WindSong";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/windsong-v11-latin-regular.woff2") format("woff2");
+}
+
+:root {
+  --grey: #333333;
+  --black: #000000;
+  --white: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: "Raleway", "Quicksand", sans-serif, Arial;
+  font-weight: 300;
+  overflow-x: hidden;
+  color: var(--grey);
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  min-width: 100%;
+  z-index: 9999;
+  /* background-color: var(--white); */
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.875rem;
+}
+
+.header-logo > a {
+  font-size: 2.5rem;
+  letter-spacing: 0.14em;
+}
+
+.header-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+}
+
+.header-nav-links a {
+  font-size: 1.25rem;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+}
+
+.hero > img {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  /*  */
+  transform-origin: bottom left;
+}
+
+.hero-text {
+  position: absolute;
+  top: 55%;
+  right: 5%;
+  z-index: 20;
+}
+
+.hero-text > h1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-text > h1 span {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 0.9em;
+  letter-spacing: 0.14em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text > h1 > span:nth-child(1) {
+  justify-self: end;
+  margin-right: 0.35em;
+}
+
+.hero-text > h1 > span:nth-child(2) {
+  font-family: "WindSong";
+  font-size: 8rem;
+  margin-bottom: 0.15em;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.hero-text > h1 > span:nth-child(3) {
+  justify-self: end;
+}
+.hero-text > h1 > span:nth-child(4) {
+  justify-self: start;
+  margin-left: 0.5em;
+}
+
+/* GALLERY */
+
+.gallery-scroll {
+  min-height: 400vh;
+  position: relative;
+}
+
+.gallery-container {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.gallery-container div {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.gallery-photo-container {
+  height: 80vh;
+  width: 38vw;
+  flex: 1;
+}
+
+.gallery-photo-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* On mobile/tablet */
+/* image hero - object-position: 65% 0% */
