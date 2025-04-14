@@ -2,20 +2,28 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useRef } from "react";
-import { useInView } from "motion/react";
+import { useInView, useScroll, useTransform } from "motion/react";
 import { motion } from "motion/react";
 
 export default function Layout() {
   const portfolioRef = useRef(null);
-  const isBgBlack = useInView(portfolioRef, { amount: 0.1 });
+  const { scrollYProgress } = useScroll({
+    target: portfolioRef,
+    offset: ["start 100vh", "end center"],
+  });
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.175],
+    ["#fff", "#000000"]
+  );
+
   return (
     <>
       {/* {loading && <Loader />} */}
       <Header />
       <motion.div
         style={{
-          backgroundColor: isBgBlack ? "#000000" : "#fff",
-          transition: "background-color 2s ease-in-out",
+          backgroundColor,
         }}
         className="wrapper"
       >
