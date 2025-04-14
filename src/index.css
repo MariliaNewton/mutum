@@ -207,5 +207,11 @@ header {
   object-fit: cover;
 }
 
+/* PORTFOLIO */
+
+.portfolio-container {
+  height: 400vh;
+}
+
 /* On mobile/tablet */
 /* image hero - object-position: 65% 0% */
