@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { motion } from "motion/react";
 
-export default function Header() {
+export default function Header({ color, backgroundColor }) {
   return (
-    <header>
+    <motion.header style={{ color, backgroundColor }}>
       <nav className="header-nav">
         <motion.div className="header-logo">
           <Link to="/">MUTUM</Link>
@@ -20,6 +20,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-    </header>
+    </motion.header>
   );
 }

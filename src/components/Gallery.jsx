@@ -24,7 +24,7 @@ export default function Gallery() {
     }, 0);
 
     function updateSize() {
-      let { width, height } = scrollableRef.current.getBoundingClientRect();
+      let { width } = scrollableRef.current.getBoundingClientRect();
       setWidthScroll(width);
     }
     window.addEventListener("resize", updateSize);
@@ -35,7 +35,7 @@ export default function Gallery() {
   useEffect(() => {
     const handleScrollDir = () => {
       if (scrollableRef.current) {
-        const { top, height } = scrollableRef.current.getBoundingClientRect();
+        const { top } = scrollableRef.current.getBoundingClientRect();
         top > 0 ? setTopToBottom(true) : setTopToBottom(false);
       }
     };
@@ -66,8 +66,7 @@ export default function Gallery() {
   const containerVariants = {
     hidden: {
       transition: {
-        staggerChildren: 0.15,
-        staggerDirection: -1,
+        staggerChildren: 0,
       },
     },
     visible: {

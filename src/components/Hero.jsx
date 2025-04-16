@@ -18,7 +18,7 @@ export default function Hero() {
   const opacityText = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const yText = useTransform(
     scrollYProgress,
-    [0, 0.35, 0.5],
+    [0, 0.35, 0.6],
     ["0px", "-50px", "-120px"]
   );
 

@@ -60,6 +60,7 @@
 
 :root {
   --grey: #333333;
+  --light-grey: #d9d9d9;
   --black: #000000;
   --white: #fff;
 }
@@ -89,14 +90,14 @@ header {
   top: 0;
   min-width: 100%;
   z-index: 9999;
-  /* background-color: var(--white); */
 }
 
 .header-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1.875rem;
+  padding: 0rem 1.875rem;
+  min-height: 10vh;
 }
 
 .header-logo > a {
@@ -210,7 +211,183 @@ header {
 /* PORTFOLIO */
 
 .portfolio-container {
-  height: 400vh;
+  padding: 0rem 1.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  overflow-x: hidden;
+}
+
+.portfolio-item {
+  min-height: 90vh;
+  padding-top: 10vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.portfolio-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.portfolio-cover-img {
+  height: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-link {
+  font-family: "WindSong";
+  color: var(--white);
+  font-size: 6rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  position: relative;
+  margin: 0;
+}
+
+.portfolio-link-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-item-name {
+  position: relative;
+  z-index: 3;
+}
+
+.underline-animated {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform-origin: right;
+  height: 2rem;
+  width: 120%;
+  z-index: 2;
+}
+
+.underline-static {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 120%;
+  z-index: 1;
+}
+
+/* TESTIMONIALS */
+
+.testimonials-section {
+  padding-top: 10vh;
+  height: 90vh;
+  max-height: 880px;
+  /* confirm this max height later */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.testimonials-container {
+  display: flex;
+  width: 90%;
+  overflow: hidden;
+}
+
+.testimonials-wrapper {
+  width: 60%;
+  max-width: 52.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* confirm max-width later */
+}
+
+.testimonials-wrapper h1 {
+  font-family: "WindSong";
+  font-size: 4rem;
+  letter-spacing: 0;
+  text-wrap: nowrap;
+  font-weight: 400;
+  margin: 0 auto 5rem auto;
+  position: absolute;
+  top: 25%;
+}
+
+.testimonial-card {
+  /* position: relative; */
+  margin: 5rem 0;
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
+}
+
+.testimonial-card .quote {
+  position: absolute;
+  font-family: "WindSong";
+  font-size: 8rem;
+  letter-spacing: 0;
+  text-wrap: nowrap;
+  font-weight: 400;
+}
+
+.testimonial-card .text {
+  /* width: 50vw; */
+  position: relative;
+  margin: auto;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.testimonial-card .client,
+.testimonial-card .service {
+  font-size: 1.75rem;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.testimonial-card .client {
+  margin-top: 2rem;
+}
+
+.quote-left {
+  top: 0;
+  left: 0;
+  transform: translate(-105%, -40%);
+}
+.quote-right {
+  bottom: 0;
+  right: 0;
+  transform: translate(-10%, 75%);
+}
+
+.testimonials-pagination {
+  position: absolute;
+  bottom: 17.5%;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.testimonials-pagination > div {
+  height: 0.6rem;
+  width: 0.6rem;
+  border-radius: 100%;
+  background-color: var(--light-grey);
+}
+
+/* PLACEHOLDER */
+
+.placeholder {
+  height: 300vh;
 }
 
 /* On mobile/tablet */
