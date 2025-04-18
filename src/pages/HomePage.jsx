@@ -3,6 +3,7 @@ import Gallery from "../components/Gallery";
 import Portfolio from "../components/Portfolio";
 import { useOutletContext } from "react-router-dom";
 import Testimonials from "../components/Testimonials";
+import InstagramPreview from "../components/InstagramPreview";
 
 export default function HomePage() {
   const { portfolioRef, backgroundColor } = useOutletContext();
@@ -14,7 +15,8 @@ export default function HomePage() {
         <Portfolio backgroundColor={backgroundColor} />
       </div>
       <Testimonials />
-      <div className="placeholder"></div>
+      <InstagramPreview />
+      {/* <div className="placeholder"></div> */}
     </>
   );
 }

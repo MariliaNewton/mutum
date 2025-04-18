@@ -60,9 +60,13 @@
 
 :root {
   --grey: #333333;
-  --light-grey: #d9d9d9;
+  --light-grey: #b8b8b8;
   --black: #000000;
   --white: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -288,12 +292,21 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
+  user-select: none;
 }
 
 .testimonials-container {
-  display: flex;
+  /* display: flex; */
   width: 90%;
   overflow: hidden;
+}
+.testimonials-slider {
+  display: flex;
+  width: 100%;
+  cursor: grab;
+}
+.testimonials-slider:active {
+  cursor: grabbing;
 }
 
 .testimonials-wrapper {
@@ -377,14 +390,176 @@ header {
   gap: 1.5rem;
 }
 
-.testimonials-pagination > div {
-  height: 0.6rem;
-  width: 0.6rem;
-  border-radius: 100%;
+.testimonials-pagination > button {
   background-color: var(--light-grey);
 }
 
-/* PLACEHOLDER */
+.testimonials-pagination > button,
+.button-mask {
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 100%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* INSTAGRAM PREVIEW */
+
+.instagram-section {
+  padding: 0 1.875rem;
+  margin: 20vh 0;
+
+  position: relative;
+}
+
+.instagram-section h1 {
+  font-family: "WindSong";
+  font-size: 4rem;
+  letter-spacing: 0;
+  text-wrap: nowrap;
+  font-weight: 400;
+  text-align: center;
+  margin: 5rem 0;
+}
+
+.instagram-white-fade {
+  position: absolute;
+  pointer-events: none;
+  bottom: -7vh;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.87) 63%,
+    #fff 100%
+  );
+}
+
+.instagram-link {
+  position: relative;
+  z-index: 3;
+}
+
+.instagram-link span {
+  position: relative;
+  z-index: 3;
+}
+
+.instagram-link-underline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48.5%);
+  bottom: 10%;
+  z-index: 1;
+}
+
+.instagram-link-underline-mask {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform-origin: right;
+  height: 1rem;
+  width: 120%;
+  background-color: var(--white);
+  z-index: 2;
+}
+
+.images-grid {
+  columns: 450px;
+  column-gap: 1rem;
+}
+.images-grid > div {
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.images-grid img {
+  width: 100%;
+  display: block;
+}
+
+/* FOOTER */
+
+footer {
+  min-height: 30vh;
+  position: relative;
+  bottom: 0;
+  margin: 0 1.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-top-line {
+  position: absolute;
+  width: 100%;
+  height: 0.1rem;
+  top: -0.1rem;
+  background-color: var(--grey);
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1.875rem;
+}
+
+.footer-left h1 {
+  font-weight: 200;
+  font-size: 4rem;
+  letter-spacing: 0.14em;
+  margin: 0 0 -0.75rem 0;
+}
+.footer-left span {
+  font-family: "WindSong";
+  font-size: 3.75rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin-top: -0.75rem;
+  margin-right: 1.25rem;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.875rem;
+  text-align: end;
+  margin-right: 1.875rem;
+}
+
+.footer-right a {
+  font-size: 1.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+  text-decoration-thickness: 1px;
+  /* border-bottom: 1px solid var(--grey); */
+}
+
+.footer-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.footer-whatsapp img {
+  height: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.scroll-to-top {
+  cursor: pointer;
+  position: absolute;
+  right: 1.875rem;
+  top: -1.875rem;
+  transform: translateY(-100%);
+  border-radius: 100%;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
 
 .placeholder {
   height: 300vh;

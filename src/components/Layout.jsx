@@ -40,7 +40,7 @@ export default function Layout() {
       >
         <Outlet context={{ portfolioRef, backgroundColor }} />
       </motion.div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
