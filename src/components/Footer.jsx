@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer id="footer">
       <div className="footer-top-line"></div>
       <div className="footer-left">
         <h1>MUTUM</h1>

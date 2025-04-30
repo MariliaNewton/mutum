@@ -1,12 +1,6 @@
-import { useRef, useEffect } from "react";
-import {
-  motion,
-  useAnimation,
-  useInView,
-  useScroll,
-  useTransform,
-} from "motion/react";
-import { Link, useOutletContext } from "react-router-dom";
+import { useRef } from "react";
+import { motion, useAnimation, useInView } from "motion/react";
+import { Link } from "react-router-dom";
 
 export default function Portfolio({ backgroundColor }) {
   return (

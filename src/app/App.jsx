@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import HomePage from "../pages/HomePage";
+import About from "../pages/About";
 import Layout from "../components/Layout";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="sobre" element={<About />} />
           </Route>
         </Routes>
       </Wrapper>

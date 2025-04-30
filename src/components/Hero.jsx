@@ -1,8 +1,12 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import heroPhoto from "../assets/images/heroPhoto.jpg";
+import { useOutletContext } from "react-router-dom";
+
+const INITIAL_DELAY = 0.3;
 
 export default function Hero() {
+  const { loading } = useOutletContext();
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -19,7 +23,7 @@ export default function Hero() {
   const yText = useTransform(
     scrollYProgress,
     [0, 0.35, 0.6],
-    ["0px", "-50px", "-120px"]
+    ["0px", "-50px", "-135px"]
   );
 
   return (
@@ -41,10 +45,54 @@ export default function Hero() {
         className="hero-text"
       >
         <h1>
-          <span>CADA</span>
-          <span>olhar</span>
-          <span>UMA</span>
-          <span>HISTÓRIA</span>
+          <motion.span
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={!loading ? { clipPath: "inset(0 0% 0 0)" } : {}}
+            transition={{
+              delay: INITIAL_DELAY,
+              // delay: 0.8,
+              duration: 0.4,
+              ease: "easeInOut",
+            }}
+          >
+            CADA
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: loading ? 0 : 1 }}
+            transition={{
+              delay: INITIAL_DELAY + 0.3,
+              // delay: 1,
+              duration: 2,
+              ease: "easeInOut",
+            }}
+          >
+            olhar
+          </motion.span>
+          <motion.span
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={!loading ? { clipPath: "inset(0 0% 0 0)" } : {}}
+            transition={{
+              delay: INITIAL_DELAY + 0.8,
+              // delay: 1.5,
+              duration: 0.3,
+              ease: "easeInOut",
+            }}
+          >
+            UMA
+          </motion.span>
+          <motion.span
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={!loading ? { clipPath: "inset(-20% 0% 0 0)" } : {}}
+            transition={{
+              delay: INITIAL_DELAY + 1.1,
+              // delay: 1.8,
+              duration: 0.64,
+              ease: "easeInOut",
+            }}
+          >
+            HISTÓRIA
+          </motion.span>
         </h1>
       </motion.div>
     </section>
