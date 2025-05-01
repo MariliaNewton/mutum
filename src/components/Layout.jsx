@@ -2,8 +2,13 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Loader from "./Loader";
-import { useEffect, useState, useLayoutEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "motion/react";
 
 const SECOND = 1000;
 const MIN_PAGE_LOAD = 3.8 * SECOND;
@@ -85,6 +90,7 @@ export default function Layout() {
   return (
     <>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
+      <CustomCursor backgroundColor={headerTextColor} />
       <Header
         color={headerTextColor}
         headerBackgroundColor={headerBackgroundColor}
@@ -113,5 +119,56 @@ export default function Layout() {
       </motion.div>
       <Footer />
     </>
+  );
+}
+
+function CustomCursor({ backgroundColor }) {
+  const [mouseOnScreen, setMouseOnScreen] = useState(false);
+
+  const mouseX = useMotionValue(-20);
+  const mouseY = useMotionValue(-20);
+
+  const springX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+
+  useEffect(() => {
+    const updateMousePos = (e) => {
+      mouseX.set(e.clientX - 10);
+      mouseY.set(e.clientY - 10);
+    };
+    const updateMouseLeave = () => setMouseOnScreen(false);
+    const updateMouseEnter = () => setMouseOnScreen(true);
+
+    window.addEventListener("mousemove", updateMousePos);
+    document.addEventListener("mouseenter", updateMouseEnter);
+    document.addEventListener("mouseleave", updateMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", updateMousePos);
+      document.removeEventListener("mouseenter", updateMouseEnter);
+      document.removeEventListener("mouseleave", updateMouseLeave);
+    };
+  }, []);
+
+  return (
+    <motion.div
+      style={{
+        x: springX,
+        y: springY,
+        backgroundColor,
+      }}
+      animate={{
+        opacity: mouseOnScreen ? 1 : 0,
+      }}
+      transition={{
+        opacity: {
+          duration: 0.25,
+        },
+        type: "spring",
+        stiffness: 1000,
+        damping: 30,
+      }}
+      className="circle-cursor"
+    />
   );
 }

@@ -25,10 +25,10 @@ export default function InstagramPreview() {
             opacity: 1,
             transition: {
               y: {
-                duration: 1,
+                duration: 0.7,
               },
               opacity: {
-                duration: 1,
+                duration: 0.7,
                 delay: 0.25,
               },
             },
@@ -62,7 +62,7 @@ export default function InstagramPreview() {
                 scaleX: 0,
                 transition: {
                   duration: 0.5,
-                  delay: 1,
+                  delay: 0.7,
                 },
               },
             }}
