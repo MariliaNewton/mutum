@@ -11,7 +11,8 @@ import {
 } from "motion/react";
 
 const SECOND = 1000;
-const MIN_PAGE_LOAD = 3.8 * SECOND;
+const MIN_PAGE_LOAD = 1.8 * SECOND;
+// const MIN_PAGE_LOAD = 3.8 * SECOND;
 const GREY = "#333333";
 const WHITE = "#fff";
 

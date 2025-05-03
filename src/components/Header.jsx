@@ -112,7 +112,7 @@ function DropDownMenu({ backgroundColor, color, topOfPage }) {
             staggerChildren: 0.1,
             staggerDirection: -1,
             duration: 0.3,
-            delay: 0.4,
+            delay: 0.3,
           },
         },
         visible: {

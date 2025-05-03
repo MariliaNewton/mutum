@@ -47,10 +47,9 @@ export default function Hero() {
         <h1>
           <motion.span
             initial={{ clipPath: "inset(0 100% 0 0)" }}
-            animate={!loading ? { clipPath: "inset(0 0% 0 0)" } : {}}
+            animate={!loading ? { clipPath: "inset(0 0 0 0)" } : {}}
             transition={{
               delay: INITIAL_DELAY,
-              // delay: 0.8,
               duration: 0.4,
               ease: "easeInOut",
             }}
@@ -62,7 +61,6 @@ export default function Hero() {
             animate={{ opacity: loading ? 0 : 1 }}
             transition={{
               delay: INITIAL_DELAY + 0.3,
-              // delay: 1,
               duration: 2,
               ease: "easeInOut",
             }}
