@@ -12,6 +12,7 @@ import {
 
 const SECOND = 1000;
 const MIN_PAGE_LOAD = 1.8 * SECOND;
+const MOBILE_MAX_PX = 1024;
 // const MIN_PAGE_LOAD = 3.8 * SECOND;
 const GREY = "#333333";
 const WHITE = "#fff";
@@ -21,6 +22,7 @@ export default function Layout() {
   const [headerTextColor, setHeaderTextColor] = useState(GREY);
   const [headerBackgroundColor, setHeaderBackgroundColor] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(WHITE);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_MAX_PX);
 
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -35,6 +37,17 @@ export default function Layout() {
       document.body.style.height = "auto";
     }
   }, [loading]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_MAX_PX);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!isHome) {
@@ -84,18 +97,17 @@ export default function Layout() {
         image.removeEventListener("load", handleLoad);
       });
     };
-
-    // remeber to check if the key is necessary to rerender
   }, [location.pathname]);
 
   return (
     <>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
-      <CustomCursor backgroundColor={headerTextColor} />
+      {!isMobile && <CustomCursor backgroundColor={headerTextColor} />}
       <Header
         color={headerTextColor}
         headerBackgroundColor={headerBackgroundColor}
         backgroundColor={backgroundColor}
+        isHome={isHome}
       />
       <motion.div style={{ backgroundColor }} className="wrapper">
         <AnimatePresence mode="wait">
@@ -108,6 +120,7 @@ export default function Layout() {
           >
             <Outlet
               context={{
+                isMobile,
                 loading,
                 backgroundColor,
                 setHeaderTextColor,

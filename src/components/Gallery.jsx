@@ -24,7 +24,7 @@ export default function Gallery() {
     }, 0);
 
     function updateSize() {
-      let { width } = scrollableRef.current.getBoundingClientRect();
+      const { width } = scrollableRef.current.getBoundingClientRect();
       setWidthScroll(width);
     }
     window.addEventListener("resize", updateSize);

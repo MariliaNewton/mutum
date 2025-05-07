@@ -13,6 +13,7 @@ export default function Header({
   color,
   backgroundColor,
   headerBackgroundColor,
+  isHome,
 }) {
   const [topOfPage, setTopOfPage] = useState(true);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
@@ -70,6 +71,7 @@ export default function Header({
                   backgroundColor={backgroundColor}
                   color={color}
                   topOfPage={topOfPage}
+                  isHome={isHome}
                 />
               )}
             </AnimatePresence>
@@ -88,7 +90,7 @@ export default function Header({
   );
 }
 
-function DropDownMenu({ backgroundColor, color, topOfPage }) {
+function DropDownMenu({ backgroundColor, color, topOfPage, isHome }) {
   const liVariants = {
     hidden: {
       opacity: 0,
@@ -126,7 +128,7 @@ function DropDownMenu({ backgroundColor, color, topOfPage }) {
       }}
       style={{
         borderColor: color,
-        backgroundColor: topOfPage ? "" : backgroundColor,
+        backgroundColor: !isHome ? "#fff" : topOfPage ? "" : backgroundColor,
         x: "-50%",
       }}
       className="dropdown-menu"

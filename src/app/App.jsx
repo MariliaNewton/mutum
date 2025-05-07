@@ -3,6 +3,8 @@ import { useLayoutEffect } from "react";
 import HomePage from "../pages/HomePage";
 import About from "../pages/About";
 import Layout from "../components/Layout";
+import PortfolioCategory from "../pages/PortfolioCategory";
+import NotFound from "../pages/NotFound";
 
 function App() {
   function Wrapper({ children }) {
@@ -20,8 +22,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="sobre" element={<About />} />
-            <Route path="sobre" element={<About />} />
+            <Route path="sobre" sensitive={false} element={<About />} />
+            <Route
+              path=":category"
+              sensitive={false}
+              element={<PortfolioCategory />}
+            />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Wrapper>
