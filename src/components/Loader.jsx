@@ -11,7 +11,8 @@ export default function Loader() {
   };
   return (
     <motion.div
-      initial={{ y: "-100%" }}
+      initial={{ y: 0 }}
+      // initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       exit={{ y: "-100%" }}
       transition={{ duration: 0.8, ease: "easeInOut" }}

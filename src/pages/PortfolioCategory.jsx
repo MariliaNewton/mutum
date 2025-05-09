@@ -60,7 +60,7 @@ export default function PortfolioCategory() {
   const content = contentArr[category.toLocaleLowerCase()];
   const selectedImgRef = useRef(null);
   const dragX = useMotionValue(0);
-  const { isMobile } = useOutletContext();
+  const { isMobile, loading } = useOutletContext();
 
   useEffect(() => {
     selectedImgRef.current = selectedImg;
@@ -116,7 +116,11 @@ export default function PortfolioCategory() {
   return (
     <>
       {content ? (
-        <PortfolioPage content={content} selectImg={setSelectedImg} />
+        <PortfolioPage
+          content={content}
+          selectImg={setSelectedImg}
+          loading={loading}
+        />
       ) : (
         <PortfolioNotFound />
       )}
@@ -203,10 +207,19 @@ export default function PortfolioCategory() {
   );
 }
 
-function PortfolioPage({ content, selectImg }) {
+function PortfolioPage({ content, selectImg, loading }) {
   return (
     <section className="portfolio-page-section">
-      <h1>{content.title}</h1>
+      <motion.h1
+        initial={{ clipPath: "inset(0 100% 0 0)" }}
+        animate={!loading ? { clipPath: "inset(0 -10% 0 0)" } : {}}
+        transition={{
+          duration: 1.75,
+          ease: "easeInOut",
+        }}
+      >
+        {content.title}
+      </motion.h1>
       <ImagesGrid images={content.images} selectImg={selectImg} />
       <div className="portfolio-contact">
         <h1>Sua história merece ser contada</h1>

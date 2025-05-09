@@ -142,8 +142,8 @@ header {
 
 .dropdown-menu {
   padding: 1rem;
-  margin: 0rem 1rem;
-  top: 150%;
+  margin: 0.65rem 1rem;
+  top: 100%;
   left: 50%;
   border: 1px solid;
   transform-origin: top;
@@ -901,7 +901,7 @@ footer {
 
 /* MEDIA QUERIES */
 
-@media (max-width: 1024px), (max-device-width: 1024px) {
+@media (max-width: 1024px) {
   .hero > img {
     object-position: 65% 0%;
   }
@@ -932,6 +932,14 @@ footer {
   .portfolio-page-section {
     padding-top: 10vh;
     margin-top: 0;
+  }
+
+  /* HEADER */
+
+  header {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   /* HERO */

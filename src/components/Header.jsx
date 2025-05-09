@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import {
   motion,
   AnimatePresence,
   useAnimation,
   useMotionValue,
 } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const COLOR_DD_IN_PX = 630;
 
@@ -14,13 +14,30 @@ export default function Header({
   backgroundColor,
   headerBackgroundColor,
   isHome,
+  isMobile,
 }) {
   const [topOfPage, setTopOfPage] = useState(true);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+  const menuRef = useRef(null);
   const linkVariants = {
     hover: { opacity: 1 },
     rest: { opacity: 0 },
   };
+
+  useEffect(() => {
+    const handleCloseMenuMobile = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target))
+        setShowDropdownMenu(false);
+    };
+
+    document.addEventListener("mousedown", handleCloseMenuMobile);
+    document.addEventListener("touchstart", handleCloseMenuMobile);
+
+    return () => {
+      document.removeEventListener("mousedown", handleCloseMenuMobile);
+      document.removeEventListener("touchstart", handleCloseMenuMobile);
+    };
+  }, [isMobile, showDropdownMenu]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,12 +69,14 @@ export default function Header({
             />
           </motion.li>
           <motion.li
+            ref={menuRef}
             initial="rest"
             whileHover="hover"
             animate="rest"
             className="dropdown-menu-title"
-            onMouseEnter={() => setShowDropdownMenu(true)}
-            onMouseLeave={() => setShowDropdownMenu(false)}
+            onMouseEnter={() => !isMobile && setShowDropdownMenu(true)}
+            onMouseLeave={() => !isMobile && setShowDropdownMenu(false)}
+            onClick={() => isMobile && setShowDropdownMenu((prev) => !prev)}
           >
             <span>portfólio</span>
             <motion.div
