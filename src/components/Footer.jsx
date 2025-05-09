@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footer({ isHome }) {
   return (
     <footer id="footer">
       <div className="footer-top-line"></div>
@@ -24,16 +24,18 @@ export default function Footer() {
           target="_blank"
           className="footer-whatsapp"
         >
-          <img src="images/whatsappLogo.svg" />
+          <img src="/images/whatsappLogo.svg" />
           <span>+55 (82) 99335-5662</span>
         </a>
       </div>
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="scroll-to-top"
-      >
-        <img src="images/scrollToTop.svg" alt="" />
-      </button>
+      {isHome && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="scroll-to-top"
+        >
+          <img src="/images/scrollToTop.svg" alt="" />
+        </button>
+      )}
     </footer>
   );
 }

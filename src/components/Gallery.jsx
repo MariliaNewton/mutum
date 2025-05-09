@@ -9,14 +9,19 @@ import galleryPhoto6 from "../assets/images/galleryPhoto6.png";
 
 import heroPhoto from "../assets/images/heroPhoto.jpg";
 import useWindowDimensions from "../utils/getWindowDimension";
+import { useOutletContext } from "react-router-dom";
 
 export default function Gallery() {
   const [widthScroll, setWidthScroll] = useState(0);
   const [topToBottom, setTopToBottom] = useState(true);
+  const { isMobile } = useOutletContext();
   const ref = useRef(null);
   const scrollableRef = useRef(null);
+  const scrollableRefMobile = useRef(null);
   const inView = useInView(scrollableRef, { amount: 0.29 });
   const { width } = useWindowDimensions();
+  let containerVariants = {};
+  let photoVariants = {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -63,47 +68,74 @@ export default function Gallery() {
     galleryPhoto6,
   ];
 
-  const containerVariants = {
-    hidden: {
-      transition: {
-        staggerChildren: 0,
+  if (!isMobile) {
+    containerVariants = {
+      hidden: {
+        transition: {
+          staggerChildren: 0,
+        },
       },
-    },
-    visible: {
-      transition: {
-        staggerChildren: topToBottom ? 0.25 : 0,
-        staggerDirection: topToBottom ? 1 : -1,
+      visible: {
+        transition: {
+          staggerChildren: topToBottom ? 0.25 : 0,
+          staggerDirection: topToBottom ? 1 : -1,
+        },
       },
-    },
-  };
+    };
 
-  const photoVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+    photoVariants = {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+  }
 
   return (
     <section ref={ref} className="gallery-scroll">
       <div className="gallery-container">
-        <motion.div ref={scrollableRef} style={{ x }}>
-          <div className="gallery-photo-container">
-            <motion.img style={{ opacity }} src={heroPhoto} alt="" />
-          </div>
+        <motion.div ref={scrollableRef} style={isMobile ? {} : { x }}>
+          {!isMobile && (
+            <div className="gallery-photo-container">
+              <motion.img
+                style={{ opacity: isMobile ? 1 : opacity }}
+                src={heroPhoto}
+                alt=""
+                className="gallery-photo-container-first"
+              />
+            </div>
+          )}
           <motion.div
             variants={containerVariants}
             animate={inView ? "visible" : "hidden"}
             initial="hidden"
-            viewport={0.8}
+            // viewport={0.8}
+            ref={scrollableRefMobile}
           >
-            {galleryPhotos.map((photo, index) => (
-              <motion.div
-                variants={photoVariants}
-                key={index}
-                className="gallery-photo-container"
-              >
-                <img src={photo} alt="" />
-              </motion.div>
-            ))}
+            {galleryPhotos.map((photo, index) => {
+              const photoRefMobile = useRef(null);
+              const { scrollXProgress } = useScroll({
+                axis: "x",
+                target: photoRefMobile,
+                container: scrollableRef,
+                offset: ["center end", "center start"],
+              });
+
+              const scale = useTransform(
+                scrollXProgress,
+                [0, 0.5, 1],
+                [0.85, 1, 0.85]
+              );
+              return (
+                <motion.div
+                  style={isMobile ? { scale } : {}}
+                  ref={photoRefMobile}
+                  variants={photoVariants}
+                  key={index}
+                  className="gallery-photo-container"
+                >
+                  <img src={photo} alt="" />
+                </motion.div>
+              );
+            })}
           </motion.div>
         </motion.div>
       </div>

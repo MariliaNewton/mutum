@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { motion, useAnimation, useInView } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 export default function Portfolio({ backgroundColor }) {
+  const { isMobile } = useOutletContext();
   return (
     <motion.section className="portfolio-container">
       <PortfolioItem
@@ -10,28 +11,33 @@ export default function Portfolio({ backgroundColor }) {
         photoUrl={"images/casamentos.jpg"}
         animateFromLeft={true}
         backgroundColor={backgroundColor}
+        isMobile={isMobile}
       />
       <PortfolioItem
         name="Pre-wedding"
         photoUrl={"images/prewedding.jpg"}
         backgroundColor={backgroundColor}
+        isMobile={isMobile}
       />
       <PortfolioItem
         name="Profissionais"
         photoUrl={"images/profissionais.jpg"}
         animateFromLeft={true}
         backgroundColor={backgroundColor}
+        isMobile={isMobile}
       />
       <PortfolioItem
         name="Eventos"
         photoUrl={"images/eventos.jpg"}
         backgroundColor={backgroundColor}
+        isMobile={isMobile}
       />
       <PortfolioItem
         name="Prints"
         photoUrl={"images/prints.jpg"}
         animateFromLeft={true}
         backgroundColor={backgroundColor}
+        isMobile={isMobile}
       />
     </motion.section>
   );
@@ -42,6 +48,7 @@ function PortfolioItem({
   photoUrl,
   animateFromLeft = false,
   backgroundColor,
+  isMobile,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once: true });
@@ -59,7 +66,7 @@ function PortfolioItem({
           variants={{
             hidden: {
               opacity: 0,
-              translateX: animateFromLeft ? "-70%" : "70%",
+              translateX: isMobile ? "0%" : animateFromLeft ? "-70%" : "70%",
             },
             visible: {
               opacity: [0, 0.1, 0.2, 1],

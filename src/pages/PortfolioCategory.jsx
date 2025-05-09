@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import {
   AnimatePresence,
@@ -53,7 +53,6 @@ const contentArr = {
 const NAV_PHOTO_WIDTH = 104;
 const NAV_PHOTO_GAP = 30;
 const DRAG_MIN = 50;
-const MOBILE_BREAKPOINT = 768;
 
 export default function PortfolioCategory() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -61,17 +60,7 @@ export default function PortfolioCategory() {
   const content = contentArr[category.toLocaleLowerCase()];
   const selectedImgRef = useRef(null);
   const dragX = useMotionValue(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { isMobile } = useOutletContext();
 
   useEffect(() => {
     selectedImgRef.current = selectedImg;

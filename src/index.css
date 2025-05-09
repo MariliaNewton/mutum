@@ -886,13 +886,6 @@ footer {
   text-decoration-thickness: 1px;
 }
 
-/* .fullscreen-photo.horizontal {
-  width: 80%;
-}
-.fullscreen-photo.vertical {
-  width: 50%;
-} */
-
 /* CURSOR */
 
 .circle-cursor {
@@ -913,6 +906,36 @@ footer {
     object-position: 65% 0%;
   }
 
+  /* MOBILE SNAP */
+  html,
+  body {
+    scroll-snap-type: y mandatory;
+  }
+
+  .gallery-container,
+  .portfolio-container,
+  .hero,
+  .testimonials-section,
+  .instagram-section,
+  .portfolio-page-section,
+  .about-section {
+    scroll-snap-align: start;
+  }
+
+  .instagram-section,
+  .portfolio-page-section,
+  .about-section {
+    scroll-margin-bottom: 40vh;
+  }
+
+  .instagram-section,
+  .portfolio-page-section {
+    padding-top: 10vh;
+    margin-top: 0;
+  }
+
+  /* HERO */
+
   .hero-text > h1 > span {
     font-size: 2.5rem;
   }
@@ -921,8 +944,136 @@ footer {
     font-size: 6.5rem;
   }
 
+  /* GALLERY */
+
+  .gallery-scroll {
+    min-height: 90vh;
+  }
+
+  .gallery-container {
+    position: static;
+    overflow: hidden;
+  }
+
+  .gallery-container > div {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0vw 20vw;
+    scroll-behavior: smooth;
+    /* -webkit-overflow-scrolling: touch; */
+  }
+
+  .gallery-photo-container {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: 60vw;
+    height: 60vh;
+    padding: 7.5vh 0vh;
+  }
+
+  .gallery-container > div::-webkit-scrollbar {
+    height: 0.25rem;
+  }
+
+  .gallery-container > div::-webkit-scrollbar-track {
+    background-color: var(--light-grey);
+    margin: 0 25vw;
+  }
+
+  .gallery-container > div::-webkit-scrollbar-thumb {
+    background-color: var(--grey);
+  }
+
+  .gallery-photo-container-first {
+    object-position: 65% 0%;
+  }
+
+  /* PORTFOLIO SECTION */
+  .portfolio-container > .portfolio-item {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .portfolio-link {
+    font-size: 4rem;
+  }
+
+  .underline-animated {
+    visibility: hidden;
+  }
+
+  .portfolio-item > a {
+    width: 100%;
+  }
+
+  .portfolio-cover-img {
+    width: 100%;
+    max-height: 30vh;
+    object-position: 0% 30%;
+  }
+
+  .portfolio-item:last-child {
+    margin-bottom: 10vh;
+  }
+
+  .portfolio-contact h1 {
+    font-size: 3rem;
+  }
+
+  .portfolio-page-section p {
+    font-size: 1.75rem;
+    max-width: 450px;
+  }
+
+  /*  TESTIMONIALS SECTION */
+
+  .testimonials-section {
+    min-height: 90vh;
+  }
+
+  .testimonials-wrapper {
+    width: 100%;
+  }
+
+  /* INSTAGRAM SECTION */
+
   .images-grid {
     columns: 300px;
+  }
+
+  .images-grid-portfolio {
+    padding: 0rem 1rem;
+    columns: 250px;
+  }
+
+  /* NOT FOUND */
+
+  .category-not-found h1 {
+    font-size: 3rem;
+  }
+  .category-not-found h2 {
+    font-size: 1.75rem;
+    max-width: 500px;
+  }
+  .page-not-found h1 {
+    font-size: 3rem;
+    max-width: 550px;
+  }
+  .page-not-found h2 {
+    font-size: 1.75rem;
+    max-width: 750px;
+  }
+
+  /* ABOUT */
+
+  .photographer-container img {
+    height: 40vh;
+  }
+
+  /* CURSOR */
+
+  .circle-cursor {
+    visibility: hidden;
   }
 }
 

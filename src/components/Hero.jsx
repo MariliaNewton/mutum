@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 const INITIAL_DELAY = 0.3;
 
 export default function Hero() {
-  const { loading } = useOutletContext();
+  const { loading, isMobile } = useOutletContext();
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -18,6 +18,9 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0.99999, 1], [1, 0]);
   const height = useTransform(scrollYProgress, [0, 1], ["100vh", "80vh"]);
   const width = useTransform(scrollYProgress, [0, 1], ["100vw", "38vw"]);
+  // const heightMobile = useTransform(scrollYProgress, [0, 1], ["100vh", "60vh"]);
+  // const widthMobile = useTransform(scrollYProgress, [0, 1], ["100vw", "60vw"]);
+  // const yMobile = useTransform(scrollYProgress, [0, 1], ["0vh", "80vh"]);
 
   const opacityText = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const yText = useTransform(
@@ -31,14 +34,25 @@ export default function Hero() {
       <motion.img
         src={heroPhoto}
         alt=""
-        style={{
-          zIndex: 10,
-          left: 0,
-          y,
-          height,
-          width,
-          opacity,
-        }}
+        style={
+          isMobile
+            ? {
+                // zIndex: 0,
+                // left: 0,
+                // y: yMobile,
+                // height: heightMobile,
+                // width: widthMobile,
+                // opacity,
+              }
+            : {
+                zIndex: 10,
+                left: 0,
+                y,
+                height,
+                width,
+                opacity,
+              }
+        }
       />
       <motion.div
         style={{ opacity: opacityText, y: yText }}

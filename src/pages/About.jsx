@@ -9,6 +9,7 @@ export default function About() {
   const textRef = useRef(null);
   const isImgInView = useInView(imgRef, { amount: 0.5, once: true });
   const isTextInView = useInView(textRef, { amount: 0.5, once: true });
+  const { isMobile } = useOutletContext();
   const { loading } = useOutletContext();
 
   const initialContainerLeft = {
@@ -38,7 +39,7 @@ export default function About() {
     opacity: 1,
   };
   const transitionText = {
-    delay: 1.75,
+    delay: isMobile ? 0.6 : 1.75,
     duration: 0.5,
     ease: "easeOut",
   };
@@ -57,9 +58,11 @@ export default function About() {
       </motion.h1>
       <div className="about-container">
         <motion.div
-          initial={initialContainerLeft}
-          animate={!loading ? animateContainer : null}
-          transition={transitionContainer}
+          initial={isMobile ? { opacity: 0 } : initialContainerLeft}
+          animate={
+            !loading ? (isMobile ? { opacity: 1 } : animateContainer) : null
+          }
+          transition={isMobile ? { duration: 1.75 } : transitionContainer}
           className="photographer-container first"
         >
           <motion.h2
@@ -86,9 +89,15 @@ export default function About() {
           </div>
         </motion.div>
         <motion.div
-          initial={initialContainerRight}
-          animate={!loading ? animateContainer : null}
-          transition={{ ...transitionContainer, delay: 0.5 }}
+          initial={isMobile ? { opacity: 0 } : initialContainerRight}
+          animate={
+            !loading ? (isMobile ? { opacity: 1 } : animateContainer) : null
+          }
+          transition={
+            isMobile
+              ? { duration: 1.75 }
+              : { ...transitionContainer, delay: 0.5 }
+          }
           className="photographer-container second"
         >
           <motion.h2

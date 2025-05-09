@@ -131,7 +131,7 @@ export default function Layout() {
           </motion.div>
         </AnimatePresence>
       </motion.div>
-      <Footer />
+      <Footer isHome={isHome} />
     </>
   );
 }
