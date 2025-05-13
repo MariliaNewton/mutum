@@ -814,6 +814,7 @@ footer {
   max-height: 75vh;
   max-width: 80vw;
   object-fit: cover;
+  will-change: transform;
 }
 
 .fullscreen-overlay button {
@@ -954,9 +955,9 @@ footer {
     scroll-margin-bottom: 100vh;
   } */
 
-  .instagram-section {
+  /* .instagram-section {
     padding-top: 10vh;
-  }
+  } */
 
   .portfolio-page-section {
     padding-top: 0vh;
@@ -1070,6 +1071,7 @@ footer {
 
   .testimonials-section {
     min-height: 90vh;
+    padding-top: 0;
   }
 
   .testimonials-wrapper {
@@ -1079,9 +1081,14 @@ footer {
   .testimonials-wrapper h1 {
     font-size: 3rem;
     margin-bottom: 0rem;
+    top: 20%;
   }
 
   /* INSTAGRAM SECTION */
+
+  .instagram-section {
+    margin-top: 0;
+  }
 
   .images-grid {
     columns: 300px;
