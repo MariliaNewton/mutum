@@ -52,7 +52,7 @@ const contentArr = {
 
 const NAV_PHOTO_WIDTH = 104;
 const NAV_PHOTO_GAP = 30;
-const DRAG_MIN = 50;
+const DRAG_MIN = 25;
 
 export default function PortfolioCategory() {
   const [selectedImg, setSelectedImg] = useState(null);

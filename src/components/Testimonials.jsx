@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue } from "motion/react";
+import { useOutletContext } from "react-router-dom";
 
 const testimonials = [
   {
@@ -30,12 +31,14 @@ const testimonials = [
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = 6 * ONE_SECOND;
-const DRAG_MIN = 40;
+const DRAG_MIN = 50;
+const DRAG_MIN_MOBILE = 25;
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.25, once: true });
+  const { isMobile } = useOutletContext();
 
   const dragX = useMotionValue(0);
 
@@ -57,6 +60,7 @@ export default function Testimonials() {
 
   function onDragEnd() {
     const x = dragX.get();
+    const drag = isMobile ? DRAG_MIN_MOBILE : DRAG_MIN;
 
     if (x <= -DRAG_MIN && activeIndex < testimonials.length - 1) {
       setActiveIndex((prev) => prev + 1);
