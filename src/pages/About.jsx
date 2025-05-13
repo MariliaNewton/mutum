@@ -79,12 +79,12 @@ export default function About() {
               animate={!loading ? animateText : null}
               transition={transitionText}
             >
-              Ana Jucyara Newton Melo é psicóloga clínica com formação em
-              Gestalt-terapia, Sonhos e Psicossomática. Com experiência em
-              Psicologia Escolar pela Secretaria de Educação do Estado de
-              Alagoas, ela utiliza sua sensibilidade para capturar momentos
-              autênticos, valorizando a essência de cada indivíduo em seu
-              trabalho fotográfico.
+              <span>Ana</span> Jucyara Newton Melo é psicóloga clínica com
+              formação em Gestalt-terapia, Sonhos e Psicossomática. Com
+              experiência em Psicologia Escolar pela Secretaria de Educação do
+              Estado de Alagoas, ela utiliza sua sensibilidade para capturar
+              momentos autênticos, valorizando a essência de cada indivíduo em
+              seu trabalho fotográfico.
             </motion.p>
           </div>
         </motion.div>
@@ -108,18 +108,18 @@ export default function About() {
             Mari
           </motion.h2>
           <div>
+            <img src="images/mari.jpg" alt="" />
             <motion.p
               initial={initialText}
               animate={!loading ? animateText : null}
               transition={transitionText}
             >
-              Mariana Bezerra Marroquim é fotógrafa apaixonada por contar
-              histórias através de imagens. Com formação que inclui referências
-              literárias e artísticas, ela traduz emoções e narrativas pessoais
-              em cada clique, explorando a profundidade dos sentimentos humanos
-              e a beleza dos momentos cotidianos.
+              <span>Mariana</span> Bezerra Marroquim é fotógrafa apaixonada por
+              contar histórias através de imagens. Com formação que inclui
+              referências literárias e artísticas, ela traduz emoções e
+              narrativas pessoais em cada clique, explorando a profundidade dos
+              sentimentos humanos e a beleza dos momentos cotidianos.
             </motion.p>
-            <img src="images/mari.jpg" alt="" />
           </div>
         </motion.div>
         <motion.img

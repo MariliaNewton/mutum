@@ -29,8 +29,8 @@ const testimonials = [
 ];
 
 const ONE_SECOND = 1000;
-const AUTO_DELAY = 6 * ONE_SECOND;
-const DRAG_MIN = 60;
+const AUTO_DELAY = 60000 * ONE_SECOND;
+const DRAG_MIN = 40;
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);

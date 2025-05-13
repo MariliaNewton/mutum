@@ -22,6 +22,14 @@
   font-weight: 300;
   src: url("/fonts/raleway-v34-latin-300.woff2") format("woff2");
 }
+/* raleway-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/raleway-v34-latin-700.woff2") format("woff2");
+}
 /* raleway-regular - latin */
 @font-face {
   font-display: swap;
@@ -118,6 +126,10 @@ header {
 .header-nav-links li > span {
   padding: 0.5rem 0.75rem;
   border-radius: 100px;
+}
+.header-nav-links li:last-child > a,
+.header-nav-links li:last-child > span {
+  padding-right: 0;
 }
 
 .header-nav-links li {
@@ -286,6 +298,10 @@ header {
   align-items: center;
 }
 
+.portfolio-item > a {
+  z-index: 4;
+}
+
 .portfolio-item:nth-child(even) {
   flex-direction: row-reverse;
 }
@@ -383,7 +399,7 @@ header {
   letter-spacing: 0;
   text-wrap: nowrap;
   font-weight: 400;
-  margin: 0 auto 5rem auto;
+  margin: 0rem;
   position: absolute;
   top: 25%;
 }
@@ -417,7 +433,7 @@ header {
 .testimonial-card .service {
   font-size: 1.75rem;
   margin: auto;
-  width: 50%;
+  /* width: 50%; */
   text-align: center;
   font-weight: 300;
   text-transform: uppercase;
@@ -586,8 +602,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
-  gap: 1.875rem;
+  justify-content: space-evenly;
+  height: 100%;
+  max-height: 220px;
   text-align: end;
   margin-right: 1.875rem;
 }
@@ -597,17 +614,20 @@ footer {
   text-decoration: underline;
   text-underline-offset: 0.4rem;
   text-decoration-thickness: 1px;
-  /* border-bottom: 1px solid var(--grey); */
 }
 
 .footer-whatsapp {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  position: relative;
 }
 .footer-whatsapp img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-130%, 15%);
   height: 1.5rem;
-  margin-top: 0.5rem;
 }
 
 .scroll-to-top {
@@ -640,7 +660,7 @@ footer {
 
 .loader-overlay span {
   color: var(--white);
-  font-size: 4rem;
+  font-size: 64px;
   font-weight: 100;
 }
 
@@ -688,7 +708,7 @@ footer {
 }
 
 .photographer-container.second > div {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
   align-items: flex-end;
 }
 
@@ -719,11 +739,13 @@ footer {
 .portfolio-page-section {
   margin-top: 10vh;
   min-height: 70vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .images-grid-portfolio {
   padding: 0rem 6rem;
-  columns: 350px;
+  columns: 300px;
 }
 
 .images-grid-portfolio img {
@@ -736,7 +758,8 @@ footer {
   font-family: "WindSong";
   letter-spacing: 0;
   font-weight: 400;
-  margin: 5rem 0rem;
+  padding: 0rem 1rem;
+  align-self: center;
 }
 
 .portfolio-contact {
@@ -864,6 +887,7 @@ footer {
   letter-spacing: 0;
   font-weight: 400;
   margin: 0rem;
+  padding: 0rem 1rem;
 }
 
 .category-not-found h2,
@@ -871,6 +895,7 @@ footer {
   font-size: 2rem;
   text-align: center;
   font-weight: 300;
+  padding: 0rem 2rem;
 }
 
 .page-not-found h1 {
@@ -925,13 +950,20 @@ footer {
   .instagram-section,
   .portfolio-page-section,
   .about-section {
-    scroll-margin-bottom: 40vh;
+    scroll-margin-bottom: 100vh;
   }
 
-  .instagram-section,
-  .portfolio-page-section {
+  .instagram-section {
     padding-top: 10vh;
+  }
+
+  .portfolio-page-section {
+    padding-top: 0vh;
     margin-top: 0;
+  }
+
+  .portfolio-page-section > h1 {
+    margin: 12.5vh 0vh 6vh 0vh;
   }
 
   /* HEADER */
@@ -992,10 +1024,6 @@ footer {
     background-color: var(--grey);
   }
 
-  .gallery-photo-container-first {
-    object-position: 65% 0%;
-  }
-
   /* PORTFOLIO SECTION */
   .portfolio-container > .portfolio-item {
     flex-direction: column;
@@ -1003,7 +1031,7 @@ footer {
   }
 
   .portfolio-link {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .underline-animated {
@@ -1024,13 +1052,17 @@ footer {
     margin-bottom: 10vh;
   }
 
-  .portfolio-contact h1 {
-    font-size: 3rem;
-  }
-
   .portfolio-page-section p {
     font-size: 1.75rem;
     max-width: 450px;
+  }
+
+  .portfolio-page-section h1 {
+    font-size: 5rem;
+  }
+
+  .portfolio-contact h1 {
+    font-size: 3rem;
   }
 
   /*  TESTIMONIALS SECTION */
@@ -1043,6 +1075,11 @@ footer {
     width: 100%;
   }
 
+  .testimonials-wrapper h1 {
+    font-size: 3rem;
+    margin-bottom: 0rem;
+  }
+
   /* INSTAGRAM SECTION */
 
   .images-grid {
@@ -1051,31 +1088,32 @@ footer {
 
   .images-grid-portfolio {
     padding: 0rem 1rem;
-    columns: 250px;
+    columns: 175px;
+  }
+
+  .instagram-section h1 {
+    font-size: 3rem;
   }
 
   /* NOT FOUND */
 
-  .category-not-found h1 {
-    font-size: 3rem;
-  }
-  .category-not-found h2 {
-    font-size: 1.75rem;
-    max-width: 500px;
-  }
+  .category-not-found h1,
   .page-not-found h1 {
     font-size: 3rem;
-    max-width: 550px;
   }
+  .category-not-found h2,
   .page-not-found h2 {
     font-size: 1.75rem;
-    max-width: 750px;
   }
 
   /* ABOUT */
 
   .photographer-container img {
     height: 40vh;
+  }
+
+  .about-section h1 {
+    font-size: 5rem;
   }
 
   /* CURSOR */
@@ -1085,12 +1123,267 @@ footer {
   }
 }
 
-/* @media (max-width: 768px), (max-device-width: 768px) {
+@media (max-width: 768px), (max-device-width: 768px) {
   html {
-    font-size: 10px;
+    font-size: 14px;
   }
 
+  /* HEADER */
   .header-nav {
     padding: 0rem 1rem;
   }
-} */
+  .header-nav-links {
+    gap: 0.625rem;
+  }
+  .header-logo a {
+    font-size: 2rem;
+  }
+  .dropdown-menu {
+    gap: 2rem;
+  }
+
+  /* HERO */
+
+  .hero > img {
+    object-position: 65% 0%;
+  }
+  .hero-text {
+    top: 60%;
+  }
+  .hero-text > h1 > span {
+    font-size: 2.25rem;
+  }
+  .hero-text > h1 > span:nth-child(2) {
+    font-size: 5.5rem;
+  }
+
+  /* GALLERY */
+  .gallery-container div {
+    gap: 0;
+  }
+
+  .gallery-photo-container {
+    width: 75vw;
+  }
+
+  /* TESTIMONIAL */
+
+  .testimonial-card .text,
+  .testimonial-card .client,
+  .testimonial-card .service {
+    font-size: 1.5rem;
+  }
+  .testimonial-card {
+    padding: 0rem 3rem;
+  }
+  .testimonials-wrapper h1 {
+    font-size: 2.5rem;
+  }
+  .testimonial-card .client,
+  .testimonial-card .service {
+    text-wrap: nowrap;
+  }
+
+  /* INSTAGRAM */
+  .instagram-section h1 {
+    font-size: 2.5rem;
+    margin: 3rem 0;
+  }
+  .images-grid {
+    columns: 200px;
+  }
+
+  /* ABOUT */
+  .about-section {
+    padding-top: 0;
+  }
+  .about-section h1 {
+    font-size: 3.5rem;
+    margin: 12.5vh 0vh 6vh 0vh;
+  }
+  .photographer-container > h2 {
+    display: none;
+  }
+  .photographer-container > div {
+    display: block;
+    max-width: 500px;
+  }
+  .photographer-container p {
+    max-width: none;
+  }
+  .photographer-container.first > div > img {
+    float: left;
+    margin-right: 1rem;
+    height: 30vh;
+  }
+  .photographer-container.second > div {
+    margin-left: auto;
+  }
+  .photographer-container.second > div > img {
+    float: right;
+    margin-left: 1rem;
+    height: 30vh;
+  }
+  .photographer-container > div > p {
+    float: none;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  .photographer-container > div > p span {
+    font-weight: 700;
+  }
+  .photographer-container.second {
+    margin-top: 0;
+  }
+  .about-container > p {
+    font-size: 1.4rem;
+  }
+  .about-container > img {
+    height: 225px;
+  }
+
+  /* PORTFOLIO CATEGORY */
+  .portfolio-page-section h1 {
+    font-size: 2.3rem;
+  }
+  .portfolio-page-section > h1 {
+    font-size: 3.5rem;
+  }
+  .portfolio-page-section p {
+    font-size: 1.5rem;
+    max-width: 360px;
+  }
+  .portfolio-page-section a {
+    text-decoration-thickness: 1px;
+  }
+  .portfolio-arrows {
+    display: none;
+  }
+
+  /* NOT FOUND */
+  .category-not-found h1,
+  .page-not-found h1 {
+    font-size: 2.3rem;
+  }
+  .category-not-found h2,
+  .page-not-found h2 {
+    font-size: 1.5rem;
+  }
+  .page-not-found a {
+    text-underline-offset: 0.2rem;
+  }
+
+  /* FOOTER */
+
+  footer {
+    margin: 0 1rem;
+  }
+  .footer-left span {
+    font-size: 2.75rem;
+  }
+  .footer-left h1 {
+    font-size: 3rem;
+  }
+  .scroll-to-top img {
+    height: 60px;
+  }
+  .footer-right,
+  .footer-left {
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px), (max-device-width: 480px) {
+  /* HADER */
+  .header-logo a {
+    font-size: 1.5rem;
+  }
+
+  /* HERO */
+  .hero-text > h1 > span {
+    font-size: 1.25rem;
+  }
+  .hero-text > h1 > span:nth-child(2) {
+    font-size: 3.5rem;
+  }
+
+  /* GALLERY SECTION */
+  .gallery-photo-container {
+    height: 50vh;
+  }
+
+  /* PORTFOLIO SECTION */
+  .portfolio-cover-img {
+    max-height: 20vh;
+  }
+
+  /* TESTIMONIALS SECTION */
+  .testimonials-wrapper h1 {
+    text-wrap: wrap;
+    text-align: center;
+    top: 20%;
+  }
+  .testimonials-wrapper h1 {
+    font-size: 2rem;
+  }
+  .testimonial-card .text,
+  .testimonial-card .client,
+  .testimonial-card .service {
+    font-size: 1.2rem;
+  }
+
+  .testimonial-card {
+    padding: 0rem 1.5rem;
+    margin: 10rem 0rem 5rem 0rem;
+  }
+
+  .testimonials-container {
+    width: 90%;
+  }
+
+  .testimonial-card .quote {
+    font-size: 5rem;
+  }
+  .testimonials-pagination {
+    bottom: 12%;
+  }
+  .testimonials-pagination > button,
+  .button-mask {
+    height: 0.5rem;
+    width: 0.5rem;
+  }
+
+  /* INSTAGRAM SECTION */
+  .instagram-section {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+  .instagram-section h1 {
+    text-wrap: wrap;
+  }
+  .images-grid {
+    columns: 130px;
+    gap: 0.25rem;
+  }
+  .images-grid > div {
+    margin-bottom: 0.25rem;
+  }
+
+  /* FOOTER */
+  footer {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  .scroll-to-top {
+    right: 1rem;
+    top: -1rem;
+  }
+
+  .footer-right {
+    align-items: center;
+    gap: 2rem;
+  }
+}
