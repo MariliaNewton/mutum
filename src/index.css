@@ -935,6 +935,7 @@ footer {
   html,
   body {
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
   }
 
   .gallery-container,
@@ -1321,7 +1322,7 @@ footer {
   .testimonials-wrapper h1 {
     text-wrap: wrap;
     text-align: center;
-    top: 20%;
+    top: 26%;
   }
   .testimonials-wrapper h1 {
     font-size: 2rem;
