@@ -29,13 +29,13 @@ const testimonials = [
 ];
 
 const ONE_SECOND = 1000;
-const AUTO_DELAY = 60000 * ONE_SECOND;
+const AUTO_DELAY = 6 * ONE_SECOND;
 const DRAG_MIN = 40;
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.25 });
+  const isInView = useInView(ref, { amount: 0.25, once: true });
 
   const dragX = useMotionValue(0);
 
@@ -169,7 +169,7 @@ function ClientTestimonial({ activeIndex }) {
 
 function DotsPagination({ activeIndex, setActiveIndex }) {
   const ref = useRef(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, { once: true });
   return (
     <motion.div
       variants={{

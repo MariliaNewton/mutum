@@ -932,7 +932,7 @@ footer {
   }
 
   /* MOBILE SNAP */
-  html,
+  /* html,
   body {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -952,7 +952,7 @@ footer {
   .portfolio-page-section,
   .about-section {
     scroll-margin-bottom: 100vh;
-  }
+  } */
 
   .instagram-section {
     padding-top: 10vh;
