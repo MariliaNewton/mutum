@@ -54,7 +54,7 @@ const NAV_PHOTO_WIDTH = 104;
 const NAV_PHOTO_WIDTH_MOBILE = 78;
 const NAV_PHOTO_GAP = 30;
 const NAV_PHOTO_GAP_MOBILE = 15;
-const DRAG_MIN = 25;
+const DRAG_MIN = 15;
 
 export default function PortfolioCategory() {
   const [selectedImg, setSelectedImg] = useState(null);
