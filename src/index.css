@@ -112,6 +112,7 @@ header {
   list-style: none;
   display: flex;
   gap: 1.625rem;
+  padding-left: 0;
 }
 
 .header-nav-links a,
@@ -126,10 +127,6 @@ header {
 .header-nav-links li > span {
   padding: 0.5rem 0.75rem;
   border-radius: 100px;
-}
-.header-nav-links li:last-child > a,
-.header-nav-links li:last-child > span {
-  padding-right: 0;
 }
 
 .header-nav-links li {
@@ -165,6 +162,7 @@ header {
   flex-direction: column;
   gap: 1rem;
   border-radius: 20px;
+  will-change: transform;
 }
 
 .dropdown-menu li > a {
@@ -737,8 +735,8 @@ footer {
 /* PORTFOLIO PAGE */
 
 .portfolio-page-section {
-  margin-top: 10vh;
-  min-height: 70vh;
+  /* margin-top: 10vh; */
+  /* min-height: 70vh; */
   display: flex;
   flex-direction: column;
 }
@@ -760,6 +758,10 @@ footer {
   font-weight: 400;
   padding: 0rem 1rem;
   align-self: center;
+}
+
+.portfolio-page-section > h1 {
+  margin: 12.5vh 0vh 6vh 0vh;
 }
 
 .portfolio-contact {
@@ -811,8 +813,8 @@ footer {
 }
 
 .fullscreen-photo {
-  max-height: 75vh;
-  max-width: 80vw;
+  max-height: 100%;
+  max-width: 100%;
   object-fit: cover;
   will-change: transform;
 }
@@ -927,7 +929,7 @@ footer {
 
 /* MEDIA QUERIES */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px), (max-device-width: 1024) {
   .hero > img {
     object-position: 65% 0%;
   }
@@ -959,14 +961,10 @@ footer {
     padding-top: 10vh;
   } */
 
-  .portfolio-page-section {
+  /* .portfolio-page-section {
     padding-top: 0vh;
     margin-top: 0;
-  }
-
-  .portfolio-page-section > h1 {
-    margin: 12.5vh 0vh 6vh 0vh;
-  }
+  } */
 
   /* HEADER */
 
@@ -974,6 +972,11 @@ footer {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+
+  .header-nav-links li:last-child > a,
+  .header-nav-links li:last-child > span {
+    padding-right: 0;
   }
 
   /* HERO */
@@ -1127,7 +1130,8 @@ footer {
   /* CURSOR */
 
   .circle-cursor {
-    visibility: hidden;
+    display: none;
+    background-color: red;
   }
 }
 
@@ -1306,6 +1310,9 @@ footer {
   .header-logo a {
     font-size: 1.5rem;
   }
+  .header-nav-links {
+    gap: 0;
+  }
 
   /* HERO */
   .hero-text > h1 > span {
@@ -1375,6 +1382,23 @@ footer {
   }
   .images-grid > div {
     margin-bottom: 0.25rem;
+  }
+
+  /* PORTFOLIO CATEGORY */
+  .photos-navigation {
+    height: 97.5px;
+    width: 78px;
+  }
+  .photos-navigation-container {
+    gap: 15px;
+  }
+  .fullscreen-container {
+    max-height: 75vh;
+    max-width: 95vw;
+  }
+  .images-grid-portfolio {
+    padding: 0 0.25rem;
+    columns: 120px;
   }
 
   /* FOOTER */

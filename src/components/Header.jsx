@@ -1,10 +1,5 @@
-import { Link, useOutletContext } from "react-router-dom";
-import {
-  motion,
-  AnimatePresence,
-  useAnimation,
-  useMotionValue,
-} from "motion/react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const COLOR_DD_IN_PX = 630;
@@ -91,6 +86,7 @@ export default function Header({
                   color={color}
                   topOfPage={topOfPage}
                   isHome={isHome}
+                  isMobile={isMobile}
                 />
               )}
             </AnimatePresence>
@@ -109,7 +105,7 @@ export default function Header({
   );
 }
 
-function DropDownMenu({ backgroundColor, color, topOfPage, isHome }) {
+function DropDownMenu({ backgroundColor, color, topOfPage, isHome, isMobile }) {
   const liVariants = {
     hidden: {
       opacity: 0,
@@ -147,7 +143,13 @@ function DropDownMenu({ backgroundColor, color, topOfPage, isHome }) {
       }}
       style={{
         borderColor: color,
-        backgroundColor: !isHome ? "#fff" : topOfPage ? "" : backgroundColor,
+        backgroundColor: isMobile
+          ? backgroundColor
+          : !isHome
+          ? "#fff"
+          : topOfPage
+          ? ""
+          : backgroundColor,
         x: "-50%",
       }}
       className="dropdown-menu"

@@ -51,7 +51,9 @@ const contentArr = {
 };
 
 const NAV_PHOTO_WIDTH = 104;
+const NAV_PHOTO_WIDTH_MOBILE = 78;
 const NAV_PHOTO_GAP = 30;
+const NAV_PHOTO_GAP_MOBILE = 15;
 const DRAG_MIN = 25;
 
 export default function PortfolioCategory() {
@@ -60,7 +62,10 @@ export default function PortfolioCategory() {
   const content = contentArr[category.toLocaleLowerCase()];
   const selectedImgRef = useRef(null);
   const dragX = useMotionValue(0);
-  const { isMobile, loading } = useOutletContext();
+  const { isMobile, isMobileSm, loading } = useOutletContext();
+
+  const photoWidth = isMobileSm ? NAV_PHOTO_WIDTH_MOBILE : NAV_PHOTO_WIDTH;
+  const photoGap = isMobileSm ? NAV_PHOTO_GAP_MOBILE : NAV_PHOTO_GAP;
 
   useEffect(() => {
     selectedImgRef.current = selectedImg;
@@ -177,8 +182,7 @@ export default function PortfolioCategory() {
               <motion.div
                 animate={{
                   x: `${
-                    -selectedImg * (NAV_PHOTO_WIDTH + NAV_PHOTO_GAP) -
-                    NAV_PHOTO_WIDTH / 2
+                    -selectedImg * (photoWidth + photoGap) - photoWidth / 2
                   }px`,
                 }}
                 transition={{

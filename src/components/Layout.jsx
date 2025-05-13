@@ -12,8 +12,8 @@ import {
 
 const SECOND = 1000;
 const MIN_PAGE_LOAD = 1.8 * SECOND;
-const MOBILE_MAX_PX = 1024;
 const MOBILE_MEDIA_QUERY = "(max-width: 1024px)";
+const MOBILE_SM_MEDIA_QUERY = "(max-width: 480px)";
 // const MIN_PAGE_LOAD = 3.8 * SECOND;
 const GREY = "#333333";
 const WHITE = "#fff";
@@ -23,9 +23,11 @@ export default function Layout() {
   const [headerTextColor, setHeaderTextColor] = useState(GREY);
   const [headerBackgroundColor, setHeaderBackgroundColor] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(WHITE);
-  // const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_MAX_PX);
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia(MOBILE_MEDIA_QUERY).matches
+  );
+  const [isMobileSm, setIsMobileSm] = useState(
+    () => window.matchMedia(MOBILE_SM_MEDIA_QUERY).matches
   );
 
   const location = useLocation();
@@ -44,25 +46,18 @@ export default function Layout() {
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(MOBILE_MEDIA_QUERY);
+    const mediaQueryListSm = window.matchMedia(MOBILE_SM_MEDIA_QUERY);
 
     const handleMediaChange = (e) => setIsMobile(e.matches);
+    const handleMediaSmChange = (e) => setIsMobileSm(e.matches);
 
     mediaQueryList.addEventListener("change", handleMediaChange);
-    return () =>
+    mediaQueryListSm.addEventListener("change", handleMediaSmChange);
+    return () => {
       mediaQueryList.removeEventListener("change", handleMediaChange);
+      mediaQueryListSm.removeEventListener("change", handleMediaSmChange);
+    };
   }, []);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth <= MOBILE_MAX_PX);
-  //     console.log(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   useEffect(() => {
     if (!isHome) {
@@ -137,6 +132,7 @@ export default function Layout() {
             <Outlet
               context={{
                 isMobile,
+                isMobileSm,
                 loading,
                 backgroundColor,
                 setHeaderTextColor,
