@@ -1407,7 +1407,7 @@ footer {
   /* NOT FOUND */
   .category-not-found,
   .page-not-found {
-    min-height: calc(90svh -350px);
+    height: calc(90dvh - 350px);
   }
 
   /* FOOTER */
