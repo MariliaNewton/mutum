@@ -1314,7 +1314,13 @@ footer {
     gap: 0;
   }
   .header-nav {
-    min-height: 10svh;
+    min-height: 10dvh;
+  }
+  .hero-text {
+    right: 3%;
+  }
+  .hero-text > h1 > span:nth-child(2) {
+    margin-right: 0.6rem;
   }
 
   /* HERO */
