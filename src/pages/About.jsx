@@ -3,12 +3,11 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 
-const INITIAL_DELAY = 0.3;
 export default function About() {
   const imgRef = useRef(null);
   const textRef = useRef(null);
-  const isImgInView = useInView(imgRef, { amount: 0.5, once: true });
-  const isTextInView = useInView(textRef, { amount: 0.5, once: true });
+  const isImgInView = useInView(imgRef, { amount: 0.3, once: true });
+  const isTextInView = useInView(textRef, { amount: 0.3, once: true });
   const { isMobile } = useOutletContext();
   const { loading } = useOutletContext();
 
