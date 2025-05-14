@@ -1316,12 +1316,12 @@ footer {
   .header-nav {
     min-height: 10dvh;
   }
-  .hero-text {
+  /* .hero-text {
     right: 3%;
   }
   .hero-text > h1 > span:nth-child(2) {
     margin-right: 0.6rem;
-  }
+  } */
 
   /* HERO */
   .hero-text > h1 > span {
@@ -1346,10 +1346,9 @@ footer {
     text-wrap: wrap;
     text-align: center;
     top: 26%;
+    font-size: 1.75rem;
   }
-  .testimonials-wrapper h1 {
-    font-size: 2rem;
-  }
+
   .testimonial-card .text,
   .testimonial-card .client,
   .testimonial-card .service {

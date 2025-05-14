@@ -36,14 +36,7 @@ export default function Hero() {
         alt=""
         style={
           isMobile
-            ? {
-                // zIndex: 0,
-                // left: 0,
-                // y: yMobile,
-                // height: heightMobile,
-                // width: widthMobile,
-                // opacity,
-              }
+            ? {}
             : {
                 zIndex: 10,
                 left: 0,
@@ -86,7 +79,6 @@ export default function Hero() {
             animate={!loading ? { clipPath: "inset(0 0% 0 0)" } : {}}
             transition={{
               delay: INITIAL_DELAY + 0.8,
-              // delay: 1.5,
               duration: 0.3,
               ease: "easeInOut",
             }}
@@ -98,7 +90,6 @@ export default function Hero() {
             animate={!loading ? { clipPath: "inset(-20% 0% 0 0)" } : {}}
             transition={{
               delay: INITIAL_DELAY + 1.1,
-              // delay: 1.8,
               duration: 0.64,
               ease: "easeInOut",
             }}
