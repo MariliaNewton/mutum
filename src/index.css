@@ -1313,6 +1313,9 @@ footer {
   .header-nav-links {
     gap: 0;
   }
+  .header-nav {
+    min-height: 10svh;
+  }
 
   /* HERO */
   .hero-text > h1 > span {
@@ -1399,6 +1402,12 @@ footer {
   .images-grid-portfolio {
     padding: 0 0.25rem;
     columns: 120px;
+  }
+
+  /* NOT FOUND */
+  .category-not-found,
+  .page-not-found {
+    min-height: calc(90svh -350px);
   }
 
   /* FOOTER */

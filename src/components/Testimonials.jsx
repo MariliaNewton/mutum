@@ -62,9 +62,9 @@ export default function Testimonials() {
     const x = dragX.get();
     const drag = isMobile ? DRAG_MIN_MOBILE : DRAG_MIN;
 
-    if (x <= -DRAG_MIN && activeIndex < testimonials.length - 1) {
+    if (x <= -drag && activeIndex < testimonials.length - 1) {
       setActiveIndex((prev) => prev + 1);
-    } else if (x >= DRAG_MIN && activeIndex > 0) {
+    } else if (x >= drag && activeIndex > 0) {
       setActiveIndex((prev) => prev - 1);
     }
   }
