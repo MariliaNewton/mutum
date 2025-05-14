@@ -2,6 +2,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import {
   AnimatePresence,
+  animate,
   motion,
   useInView,
   useMotionValue,
@@ -62,6 +63,7 @@ export default function PortfolioCategory() {
   const content = contentArr[category.toLocaleLowerCase()];
   const selectedImgRef = useRef(null);
   const dragX = useMotionValue(0);
+  const dragX2 = useMotionValue(0);
   const { isMobile, isMobileSm, loading } = useOutletContext();
 
   const photoWidth = isMobileSm ? NAV_PHOTO_WIDTH_MOBILE : NAV_PHOTO_WIDTH;
@@ -72,7 +74,7 @@ export default function PortfolioCategory() {
   }, [selectedImg]);
 
   useEffect(() => {
-    if (selectedImg) {
+    if (selectedImg !== null) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -117,6 +119,16 @@ export default function PortfolioCategory() {
       handlePreviousPhoto();
     }
   }
+  useEffect(() => {
+    const targetX = -selectedImg * (photoWidth + photoGap) - photoWidth / 2;
+
+    const controls = animate(dragX2, targetX, {
+      duration: 0.4,
+      easing: "easeInOut",
+    });
+
+    return controls.stop;
+  }, [selectedImg, photoWidth, photoGap]);
 
   return (
     <>
@@ -180,11 +192,21 @@ export default function PortfolioCategory() {
                 <img src="images/portfolioClose.svg" alt="" />
               </button>
               <motion.div
-                animate={{
-                  x: `${
-                    -selectedImg * (photoWidth + photoGap) - photoWidth / 2
-                  }px`,
+                drag={isMobile ? "x" : false}
+                dragConstraints={{
+                  left:
+                    -(content.images.length + 1) * (photoWidth + photoGap / 2),
+                  right: -photoWidth / 2,
                 }}
+                onDragEnd={onDragEnd}
+                style={{
+                  x: dragX2,
+                }}
+                // animate={{
+                //   x: `${
+                //     -selectedImg * (photoWidth + photoGap) - photoWidth / 2
+                //   }px`,
+                // }}
                 transition={{
                   ease: "easeInOut",
                 }}
