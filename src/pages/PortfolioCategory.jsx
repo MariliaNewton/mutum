@@ -63,7 +63,7 @@ export default function PortfolioCategory() {
   const content = contentArr[category.toLocaleLowerCase()];
   const selectedImgRef = useRef(null);
   const dragX = useMotionValue(0);
-  const dragX2 = useMotionValue(0);
+  const dragXNav = useMotionValue(0);
   const { isMobile, isMobileSm, loading } = useOutletContext();
 
   const photoWidth = isMobileSm ? NAV_PHOTO_WIDTH_MOBILE : NAV_PHOTO_WIDTH;
@@ -120,9 +120,10 @@ export default function PortfolioCategory() {
     }
   }
   useEffect(() => {
+    if (selectedImg === null) return;
     const targetX = -selectedImg * (photoWidth + photoGap) - photoWidth / 2;
 
-    const controls = animate(dragX2, targetX, {
+    const controls = animate(dragXNav, targetX, {
       duration: 0.4,
       easing: "easeInOut",
     });
@@ -200,7 +201,7 @@ export default function PortfolioCategory() {
                 }}
                 onDragEnd={onDragEnd}
                 style={{
-                  x: dragX2,
+                  x: dragXNav,
                 }}
                 // animate={{
                 //   x: `${
