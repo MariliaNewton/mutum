@@ -111,11 +111,22 @@ header {
 .header-nav-links {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 1.625rem;
   padding-left: 0;
 }
 
+.header-nav-links button {
+  all: unset;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
 .header-nav-links a,
+.header-nav-links button,
 .header-nav-links span {
   font-size: 1.25rem;
   cursor: pointer;
@@ -124,7 +135,8 @@ header {
 /* DROPDOWN MENU */
 
 .header-nav-links li > a,
-.header-nav-links li > span {
+.header-nav-links li > span,
+.header-nav-links li > button {
   padding: 0.5rem 0.75rem;
   border-radius: 100px;
 }
