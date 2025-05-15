@@ -46,6 +46,13 @@ export default function Header({
     };
   }, []);
 
+  function scrollToFooter() {
+    const footer = document.getElementById("footer");
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <motion.header style={{ color, backgroundColor: headerBackgroundColor }}>
       <nav className="header-nav">
@@ -92,7 +99,8 @@ export default function Header({
             </AnimatePresence>
           </motion.li>
           <motion.li initial="rest" whileHover="hover" animate="rest">
-            <a href="#footer">contato</a>
+            <button onClick={scrollToFooter}>contato</button>
+            {/* <a href="#footer">contato</a> */}
             <motion.div
               variants={linkVariants}
               style={{ borderColor: color }}

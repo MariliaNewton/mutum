@@ -5,8 +5,8 @@ import { useOutletContext } from "react-router-dom";
 export default function About() {
   const imgRef = useRef(null);
   const textRef = useRef(null);
-  const isImgInView = useInView(imgRef, { amount: 0.3, once: true });
-  const isTextInView = useInView(textRef, { amount: 0.3, once: true });
+  const isImgInView = useInView(imgRef, { amount: 0.2, once: true });
+  const isTextInView = useInView(textRef, { amount: 0.2, once: true });
   const { isMobile } = useOutletContext();
   const { loading } = useOutletContext();
 

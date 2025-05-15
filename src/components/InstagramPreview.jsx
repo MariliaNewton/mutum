@@ -1,5 +1,6 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const imageNames = Array.from(
   { length: 19 },
@@ -8,13 +9,14 @@ const imageNames = Array.from(
 
 export default function InstagramPreview() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const { isMobile } = useOutletContext();
+  const isInView = useInView(ref, { once: false });
   return (
     <section className="instagram-section">
       <motion.h1
         variants={{
           hidden: {
-            y: "200%",
+            y: isMobile ? "90%" : "200%",
             opacity: 0,
             transition: {
               duration: 0.5,
