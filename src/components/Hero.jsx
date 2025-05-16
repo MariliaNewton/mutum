@@ -18,10 +18,6 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0.99999, 1], [1, 0]);
   const height = useTransform(scrollYProgress, [0, 1], ["100vh", "80vh"]);
   const width = useTransform(scrollYProgress, [0, 1], ["100vw", "38vw"]);
-  // const heightMobile = useTransform(scrollYProgress, [0, 1], ["100vh", "60vh"]);
-  // const widthMobile = useTransform(scrollYProgress, [0, 1], ["100vw", "60vw"]);
-  // const yMobile = useTransform(scrollYProgress, [0, 1], ["0vh", "80vh"]);
-
   const opacityText = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const yText = useTransform(
     scrollYProgress,
@@ -36,7 +32,11 @@ export default function Hero() {
         alt=""
         style={
           isMobile
-            ? {}
+            ? {
+                height: "100vh",
+                width: "100vw",
+                opacity: 1,
+              }
             : {
                 zIndex: 10,
                 left: 0,

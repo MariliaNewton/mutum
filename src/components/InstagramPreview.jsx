@@ -1,6 +1,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { useOutletContext } from "react-router-dom";
+import ImageForGrid from "./ImageForGrid";
 
 const imageNames = Array.from(
   { length: 19 },
@@ -72,39 +73,12 @@ export default function InstagramPreview() {
           ></motion.div>
         </a>
       </motion.h1>
-      <ImagesGrid />
+      <div className="images-grid">
+        {imageNames.map((img, index) => (
+          <ImageForGrid key={index} src={img} />
+        ))}
+      </div>
       <div className="instagram-white-fade"></div>
     </section>
-  );
-}
-
-function ImagesGrid() {
-  return (
-    <div className="images-grid">
-      {imageNames.map((img, index) => {
-        const ref = useRef(null);
-        const isInView = useInView(ref, { amount: 0.3, once: true });
-
-        return (
-          <motion.div key={index}>
-            <motion.img
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isInView ? 1 : 0 }}
-              ref={ref}
-              whileHover={{
-                scale: 1.05,
-              }}
-              transition={{
-                type: "tween",
-                opacity: {
-                  duration: 1.2,
-                },
-              }}
-              src={img}
-            />
-          </motion.div>
-        );
-      })}
-    </div>
   );
 }

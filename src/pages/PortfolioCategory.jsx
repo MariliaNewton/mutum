@@ -1,5 +1,6 @@
 import { useOutletContext, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+import ImageForGrid from "../components/ImageForGrid";
 import {
   AnimatePresence,
   animate,
@@ -283,11 +284,6 @@ export default function PortfolioCategory() {
                 style={{
                   x: dragXNav,
                 }}
-                // animate={{
-                //   x: `${
-                //     -selectedImg * (photoWidth + photoGap) - photoWidth / 2
-                //   }px`,
-                // }}
                 transition={{
                   ease: "easeInOut",
                 }}
@@ -356,30 +352,9 @@ function PortfolioNotFound() {
 function ImagesGrid({ images, selectImg }) {
   return (
     <div className="images-grid images-grid-portfolio">
-      {images.map((img, index) => {
-        const ref = useRef(null);
-        const isInView = useInView(ref, { amount: 0.3, once: true });
-
-        return (
-          <motion.div onClick={() => selectImg(index)} key={index}>
-            <motion.img
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isInView ? 1 : 0 }}
-              ref={ref}
-              whileHover={{
-                scale: 1.05,
-              }}
-              transition={{
-                type: "tween",
-                opacity: {
-                  duration: 1.2,
-                },
-              }}
-              src={img}
-            />
-          </motion.div>
-        );
-      })}
+      {images.map((img, index) => (
+        <ImageForGrid key={index} src={img} onClick={() => selectImg(index)} />
+      ))}
     </div>
   );
 }

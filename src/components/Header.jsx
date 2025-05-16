@@ -100,7 +100,6 @@ export default function Header({
           </motion.li>
           <motion.li initial="rest" whileHover="hover" animate="rest">
             <button onClick={scrollToFooter}>contato</button>
-            {/* <a href="#footer">contato</a> */}
             <motion.div
               variants={linkVariants}
               style={{ borderColor: color }}
