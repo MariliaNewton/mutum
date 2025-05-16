@@ -139,6 +139,7 @@ header {
 .header-nav-links li > button {
   padding: 0.5rem 0.75rem;
   border-radius: 100px;
+  display: inline-block;
 }
 
 .header-nav-links li {
@@ -148,7 +149,7 @@ header {
 .header-active-link {
   pointer-events: none;
   position: absolute;
-  height: 135%;
+  height: 85%;
   width: 100%;
   top: 50%;
   left: 50%;
