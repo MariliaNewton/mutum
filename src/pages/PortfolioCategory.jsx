@@ -1,17 +1,15 @@
 import { useOutletContext, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import ImageForGrid from "../components/ImageForGrid";
-import {
-  AnimatePresence,
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-} from "motion/react";
+import { AnimatePresence, animate, motion, useMotionValue } from "motion/react";
 
 const contentArr = {
   casamento: {
     title: "Casamentos",
+    pageTitle: "Casamentos | Fotografia em Maceió, Milagres e Alagoas",
+    description:
+      "Registros autênticos de casamentos realizados em Maceió, Milagres e por todo o estado de Alagoas. Fotografia sensível para eternizar histórias reais.",
     images: [
       "images/casamento/casamento1.jpg",
       "images/casamento/casamento2.jpg",
@@ -36,6 +34,9 @@ const contentArr = {
   },
   prewedding: {
     title: "Pre-wedding",
+    pageTitle: "Pre-Wedding | Fotografia em Maceió, Milagres e Alagoas",
+    description:
+      "Ensaios pré-wedding em Maceió, Milagres e todo o litoral de Alagoas. Encontros leves, cheios de afeto e conexão, fotografados com propósito.",
     images: [
       "images/casamento/casamento1.jpg",
       "images/casamento/casamento2.jpg",
@@ -60,6 +61,10 @@ const contentArr = {
   },
   profissionais: {
     title: "Profisionais",
+    pageTitle:
+      "Retratos Profissionais | Fotografia em Maceió, Milagres e Alagoas",
+    description:
+      "Retratos profissionais feitos com sensibilidade e autenticidade para profissionais em geral. Ensaios em Maceió e região.",
     images: [
       "images/casamento/casamento1.jpg",
       "images/casamento/casamento2.jpg",
@@ -84,6 +89,9 @@ const contentArr = {
   },
   eventos: {
     title: "Eventos",
+    pageTitle: "Eventos | Fotografia em Maceió, Milagres e Alagoas",
+    description:
+      "Registros espontâneos e verdadeiros de eventos sociais, culturais e corporativos em Maceió, Milagres e outras cidades de Alagoas.",
     images: [
       "images/casamento/casamento1.jpg",
       "images/casamento/casamento2.jpg",
@@ -108,6 +116,9 @@ const contentArr = {
   },
   prints: {
     title: "Prints",
+    pageTitle: "Fotografias Autorais | Prints para quadros e decoração",
+    description:
+      "Fotografias autorais da Mutum disponíveis para compra. Registros poéticos da natureza, do cotidiano e de Alagoas, ideais para quadros e decoração.",
     images: [
       "images/casamento/casamento1.jpg",
       "images/casamento/casamento2.jpg",
@@ -215,11 +226,17 @@ export default function PortfolioCategory() {
   return (
     <>
       {content ? (
-        <PortfolioPage
-          content={content}
-          selectImg={setSelectedImg}
-          loading={loading}
-        />
+        <>
+          <Helmet>
+            <title>{content.pageTitle}</title>
+            <meta name="description" content={content.description} />
+          </Helmet>
+          <PortfolioPage
+            content={content}
+            selectImg={setSelectedImg}
+            loading={loading}
+          />
+        </>
       ) : (
         <PortfolioNotFound />
       )}
