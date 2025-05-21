@@ -1,6 +1,6 @@
 /* raleway-100 - latin */
 @font-face {
-  font-display: swap;
+  font-display: block;
   font-family: "Raleway";
   font-style: normal;
   font-weight: 100;
@@ -114,6 +114,7 @@ header {
   align-items: center;
   gap: 1.625rem;
   padding-left: 0;
+  margin-right: -0.75rem;
 }
 
 .header-nav-links button {
