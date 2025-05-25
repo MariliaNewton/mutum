@@ -328,6 +328,15 @@ export default function PortfolioCategory() {
 }
 
 function PortfolioPage({ content, selectImg, loading }) {
+  const contactTitle =
+    content.title === "Prints"
+      ? "Imagens que acolhem e inspiram"
+      : "Sua história merece ser contada";
+
+  const contactSubtitle =
+    content.title === "Prints"
+      ? "e conhecer nosso catálogo completo"
+      : "e criar algo único para você";
   return (
     <section className="portfolio-page-section">
       <motion.h1
@@ -342,13 +351,13 @@ function PortfolioPage({ content, selectImg, loading }) {
       </motion.h1>
       <ImagesGrid images={content.images} selectImg={selectImg} />
       <div className="portfolio-contact">
-        <h1>Sua história merece ser contada</h1>
+        <h1>{contactTitle}</h1>
         <p>
           Vamos conversar pelo{" "}
           <a href="https://wa.me/5582993355662" target="_blank">
             whatsapp
           </a>{" "}
-          e criar algo único para você
+          {contactSubtitle}
         </p>
       </div>
     </section>
