@@ -179,6 +179,15 @@ header {
   will-change: transform;
 }
 
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+}
+
 .dropdown-menu li > a {
   padding: 0;
   text-wrap: nowrap;
