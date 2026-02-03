@@ -1,148 +1,124 @@
-import { useRef } from "react";
-import { motion, useAnimation, useInView } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Link, useOutletContext } from "react-router-dom";
 
-export default function Portfolio({ backgroundColor }) {
+const categories = [
+  { name: "Casamentos", photoUrl: "images/casamentos.jpg", slug: "casamentos" },
+  {
+    name: "Casal e Família",
+    photoUrl: "images/prewedding.jpg",
+    slug: "pre-wedding",
+  },
+  { name: "Eventos", photoUrl: "images/eventos.jpg", slug: "eventos" },
+  {
+    name: "Posicionamento Profissional",
+    photoUrl: "images/profissionais.jpg",
+    slug: "profissionais",
+  },
+  {
+    name: "Para Parede | Fotografia Para Impressão",
+    photoUrl: "images/prints.jpg",
+    slug: "prints",
+  },
+];
+
+export default function Portfolio({ backgroundColor, headerTextColor }) {
   const { isMobile } = useOutletContext();
-  return (
-    <motion.section className="portfolio-container">
-      <PortfolioItem
-        name="Casamentos"
-        photoUrl={"images/casamentos.jpg"}
-        animateFromLeft={true}
-        backgroundColor={backgroundColor}
-        isMobile={isMobile}
-      />
-      <PortfolioItem
-        name="Pre-wedding"
-        photoUrl={"images/prewedding.jpg"}
-        backgroundColor={backgroundColor}
-        isMobile={isMobile}
-      />
-      <PortfolioItem
-        name="Profissionais"
-        photoUrl={"images/profissionais.jpg"}
-        animateFromLeft={true}
-        backgroundColor={backgroundColor}
-        isMobile={isMobile}
-      />
-      <PortfolioItem
-        name="Eventos"
-        photoUrl={"images/eventos.jpg"}
-        backgroundColor={backgroundColor}
-        isMobile={isMobile}
-      />
-      <PortfolioItem
-        name="Prints"
-        photoUrl={"images/prints.jpg"}
-        animateFromLeft={true}
-        backgroundColor={backgroundColor}
-        isMobile={isMobile}
-      />
-    </motion.section>
-  );
-}
-
-function PortfolioItem({
-  name,
-  photoUrl,
-  animateFromLeft = false,
-  backgroundColor,
-  isMobile,
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5, once: true });
-  const underlineControls = useAnimation();
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <motion.div
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      ref={ref}
-      className="portfolio-item"
+    <motion.section
+      className="portfolio-split-layout"
+      style={{
+        backgroundColor: "transparent",
+        "--portfolio-text": headerTextColor,
+        "--portfolio-border": headerTextColor,
+        "--portfolio-active-bg": headerTextColor,
+        "--portfolio-active-text": backgroundColor,
+      }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
-      <Link style={{ overflow: "hidden" }} to={`/${name}`}>
-        <motion.img
-          variants={{
-            hidden: {
-              opacity: 0,
-              translateX: isMobile ? "0%" : animateFromLeft ? "-70%" : "70%",
-            },
-            visible: {
-              opacity: [0, 0.1, 0.2, 1],
-              translateX: "0%",
-              transition: {
-                duration: 0.7,
-                ease: "easeOut",
-              },
-            },
-          }}
-          onMouseEnter={() => underlineControls.start("hover")}
-          onMouseLeave={() => underlineControls.start("rest")}
-          className="portfolio-cover-img"
-          src={photoUrl}
-          alt=""
-        />
-      </Link>
+      {/* Left Menu */}
+      <div className="portfolio-menu">
+        {categories.map((category) => {
+          const isActive = activeCategory.name === category.name;
 
-      <motion.div
-        variants={{
-          hidden: {
-            opacity: 0,
-            transition: {
-              duration: 1,
-              delay: 0.25,
-              ease: "easeInOut",
-            },
-          },
-          visible: {
-            opacity: 1,
-            transition: {
-              duration: 1,
-              delay: 0.25,
-              ease: "easeInOut",
-            },
-          },
-        }}
-        className="portfolio-link-container"
-      >
-        <Link className="portfolio-link" to={`/${name}`}>
-          <motion.span
-            initial="rest"
-            onMouseEnter={() => underlineControls.start("hover")}
-            onMouseLeave={() => underlineControls.start("rest")}
-            animate={underlineControls}
-          >
-            <span className="portfolio-item-name">{name}</span>
-            <img
-              className="underline-static"
-              src="images/underline.svg"
-              alt=""
-            />
+          return (
             <motion.div
-              style={{ backgroundColor }}
-              variants={{
-                rest: {
-                  scaleX: 1,
-                  translateX: "-50%",
-                  transition: {
-                    duration: 0.3,
-                    ease: "easeInOut",
-                  },
-                },
-                hover: {
-                  scaleX: 0,
-                  transition: {
-                    duration: 0.5,
-                    ease: [0.0, 0, 0.15, 1],
-                  },
-                },
-              }}
-              className="underline-animated"
-            ></motion.div>
-          </motion.span>
-        </Link>
-      </motion.div>
-    </motion.div>
+              key={category.name}
+              layout
+              className="portfolio-menu-item-wrapper"
+              onMouseEnter={() => setActiveCategory(category)}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="activeCategory"
+                  className="portfolio-menu-active-bg"
+                />
+              )}
+
+              <Link
+                to={`/${category.slug}`}
+                className={`portfolio-menu-item ${isActive ? "active" : ""}`}
+              >
+                {category.name}
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Right Display */}
+      <div className="portfolio-display">
+        <motion.div
+          variants={{
+            hover: { x: "0%", y: "0%" },
+            initial: { x: "100%", y: "-100%" },
+          }}
+          className="portfolio-arrow-icon"
+          initial="initial"
+          animate={isHovering ? "hover" : "initial"}
+          transition={{ duration: 0.3 }}
+        >
+          <Link
+            to={`/${activeCategory.slug}`}
+            style={{
+              display: "flex",
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </Link>
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={activeCategory.name}
+            src={activeCategory.photoUrl}
+            alt={activeCategory.name}
+            className="portfolio-display-image"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          />
+        </AnimatePresence>
+      </div>
+    </motion.section>
   );
 }

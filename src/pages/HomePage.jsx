@@ -18,7 +18,7 @@ export default function HomePage() {
 
   const { scrollYProgress } = useScroll({
     target: portfolioRef,
-    offset: ["start 100vh", "end 15vh"],
+    offset: ["start 120vh", "end 15vh"],
   });
 
   const progress = [0, 0.01, 0.15, 0.88, 1];
@@ -69,7 +69,10 @@ export default function HomePage() {
       <Hero />
       <Gallery />
       <div ref={portfolioRef}>
-        <Portfolio backgroundColor={backgroundColor} />
+        <Portfolio
+          backgroundColor={backgroundColor}
+          headerTextColor={headerTextColorScroll}
+        />
       </div>
       <Testimonials />
       <InstagramPreview />

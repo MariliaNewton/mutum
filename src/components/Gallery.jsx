@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, createRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 import galleryPhoto2 from "../assets/images/galleryPhoto2.png";
 import galleryPhoto3 from "../assets/images/galleryPhoto3.png";
@@ -19,7 +19,26 @@ export default function Gallery() {
   const scrollableRef = useRef(null);
   const scrollableRefMobile = useRef(null);
   const photoRefs = useRef([]);
-  const inView = useInView(scrollableRef, { amount: 0.29 });
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.intersectionRatio >= 0.29) {
+          setInView(true);
+        } else if (entry.intersectionRatio < 0.01) {
+          setInView(false);
+        }
+      },
+      { threshold: [0.01, 0.29] },
+    );
+
+    if (scrollableRef.current) {
+      observer.observe(scrollableRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   const { width } = useWindowDimensions();
 
   useEffect(() => {
@@ -55,7 +74,7 @@ export default function Gallery() {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0px", `-${widthScroll - width}px`]
+    ["0px", `-${widthScroll - width}px`],
   );
   const opacity = useTransform(scrollYProgress, [0, 0.0001], [0, 1]);
 
@@ -89,6 +108,14 @@ export default function Gallery() {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
       };
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      console.log(latest);
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
     <section ref={ref} className="gallery-scroll">
@@ -125,7 +152,7 @@ export default function Gallery() {
               const scale = useTransform(
                 scrollXProgress,
                 [0, 0.5, 1],
-                [0.85, 1, 0.85]
+                [0.85, 1, 0.85],
               );
               return (
                 <motion.div
