@@ -109,14 +109,6 @@ export default function Gallery() {
         visible: { opacity: 1 },
       };
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      console.log(latest);
-    });
-
-    return () => unsubscribe();
-  }, [scrollYProgress]);
-
   return (
     <section ref={ref} className="gallery-scroll">
       <div className="gallery-container">
